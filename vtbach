@@ -1,0 +1,71 @@
+import random
+
+game = {
+    'player' : 'P',
+    'exit' : 'E',
+    'key' : 'K',
+    'map' : [["-","-","-","-"],["-","-","-","-"],["-","-","-","-"],["-","-","-","-"]]
+}
+
+game['map'][0][0] = game['player']
+game['map'][1][2] = game['exit']
+game['map'][2][3] = game['key']
+
+xOfP = 0
+yOfP = 0
+xOfE = 1
+yOfE = 2
+xOfK = 2
+yOfK = 3
+
+haskey = False
+
+def printMap(map):
+    for i in range(4):
+        for j in range(4):
+            print(map[i][j],end=' ')
+        print()
+
+
+while True:
+    printMap(game['map'])
+    a = input('Di chuyen : ')
+
+    #down s
+    if a == 's':
+        if xOfP != 3:
+            game['map'][xOfP][yOfP] = '-'
+            game['map'][xOfP + 1][yOfP] = 'P'
+            xOfP = xOfP + 1
+
+      
+
+
+    if a =='w':
+        if xOfP != 0:
+            game['map'][xOfP][yOfP] = '-'
+            game['map'][xOfP - 1][yOfP] = 'P'
+            xOfP = xOfP - 1
+    
+    if a =='a':
+        if yOfP != 0:
+            game['map'][xOfP][yOfP] = '-'
+            game['map'][xOfP][yOfP - 1] = 'P'
+            yOfP = yOfP - 1
+    
+    if a =='d':
+        if yOfP != 3 :
+            game['map'][xOfP][yOfP] = '-'
+            game['map'][xOfP][yOfP + 1] = 'P'
+            yOfP = yOfP + 1
+
+    if xOfP == xOfK and yOfP == yOfK:
+        haskey = True
+        print('Found the Key')
+    
+    if  xOfP == xOfE and yOfP == yOfE  :
+        haskey = True 
+        print('Win')    
+        break
+    else:
+        print('You must found the key to escape!')
